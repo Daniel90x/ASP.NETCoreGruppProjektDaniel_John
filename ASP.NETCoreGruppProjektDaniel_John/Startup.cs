@@ -32,7 +32,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<MyUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<MyUser>() // Bytat till MyUser, gamla var IdentityUser
                 .AddEntityFrameworkStores<EventDbContext>();
             services.AddRazorPages();
         }
