@@ -9,7 +9,7 @@ using System;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(EventDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {

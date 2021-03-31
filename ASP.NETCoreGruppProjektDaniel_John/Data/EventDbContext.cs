@@ -3,14 +3,19 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ASP.NETCoreGruppProjektDaniel_John.Models;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class EventDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public EventDbContext(DbContextOptions<EventDbContext> options)
             : base(options)
         {
         }
+
+        public DbSet<Event> Events { get; set; }
+
+        public async
     }
 }
