@@ -12,5 +12,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
             : base(options)
         {
         }
+
+        partial DbSet<Event> { }
     }
 }
