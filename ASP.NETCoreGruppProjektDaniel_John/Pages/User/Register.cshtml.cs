@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ASP.NETCoreGruppProjektDaniel_John.Pages
+namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
 {
-    public class EventsModel : PageModel
+    public class RegisterModel : PageModel
     {
         public void OnGet()
         {

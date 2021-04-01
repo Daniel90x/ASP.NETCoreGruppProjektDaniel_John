@@ -10,11 +10,11 @@ using ASP.NETCoreGruppProjektDaniel_John.Models;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
-    public class MyEventsModel : PageModel
+    public class EventModel : PageModel
     {
         private readonly ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext _context;
 
-        public MyEventsModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
+        public EventModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
         {
             _context = context;
         }
