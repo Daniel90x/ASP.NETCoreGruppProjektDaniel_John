@@ -16,7 +16,7 @@ using ASP.NETCoreGruppProjektDaniel_John.Models;
 
 namespace ASP.NETCoreGruppProjektDaniel_John
 {
-    public class Startup
+    public class Startup // Hejsvejs test för dependaencys
     {
         public Startup(IConfiguration configuration)
         {
