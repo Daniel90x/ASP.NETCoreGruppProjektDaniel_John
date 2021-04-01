@@ -25,6 +25,8 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
         {
             public string UserName { get; set; }
             public string Password { get; set; }
+            public string Email { get; set; }
+            public string PhoneNumber { get; set; }
         }
 
 
@@ -34,6 +36,8 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
             MyUser newUser = new MyUser()
             {
                 UserName = NewUser.UserName,
+                Email = NewUser.Email,
+                PhoneNumber = NewUser.PhoneNumber
             };
 
             var result = await _userManager.CreateAsync(newUser, NewUser.Password);
