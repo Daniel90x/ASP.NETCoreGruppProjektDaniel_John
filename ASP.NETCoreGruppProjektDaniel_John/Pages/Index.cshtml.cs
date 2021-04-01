@@ -14,7 +14,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages // userManager fungerar ej so
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+       /* private readonly ILogger<IndexModel> _logger;
         private readonly EventDbContext _context;
         private readonly UserManager<MyUser> _userManager;
 
@@ -34,6 +34,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages // userManager fungerar ej so
             {
                 await _context.SeedAsync(_userManager);
             }
-        }
+        }*/
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Data
 {
-    public class EventDbContext : IdentityDbContext
+    public class EventDbContext : IdentityDbContext<IdentityUser>
     {
         public EventDbContext(DbContextOptions<EventDbContext> options)
             : base(options)
@@ -30,6 +30,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
             {
                 new Event(){Title = "Hejsan", Adress = "Här"}
             });
+
             this.SaveChanges();
         }
 
