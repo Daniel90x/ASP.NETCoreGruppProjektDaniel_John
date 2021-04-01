@@ -8,70 +8,44 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ASP.NETCoreGruppProjektDaniel_John.Data;
 using ASP.NETCoreGruppProjektDaniel_John.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
 {
     public class LoginModel : PageModel
     {
-        private readonly ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext _context;
+        private readonly SignInManager<MyUser> _signInManager;
+        private readonly UserManager<MyUser> _userManager;
 
-        public LoginModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
+        public LoginModel(SignInManager<MyUser> signInManager,
+            UserManager<MyUser> userManager)
         {
-            _context = context;
+            _signInManager = signInManager;
+            _userManager = userManager;
+
         }
-
         [BindProperty]
-        public Event Event { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public LoginUserForm LoginUser { get; set; }
+        public class LoginUserForm
         {
-            if (id == null)
+            public string UserName { get; set; }
+            public string Password { get; set; }
+        }
+        public async Task<IActionResult> OnPost()
+        {
+            var result = await _signInManager.PasswordSignInAsync(LoginUser.UserName, LoginUser.Password, false, false);
+
+            if (result.Succeeded)
             {
-                return NotFound();
+
+                return RedirectToPage("/index");
             }
 
-            Event = await _context.Events.FirstOrDefaultAsync(m => m.Id == id);
-
-            if (Event == null)
-            {
-                return NotFound();
-            }
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
 
-            _context.Attach(Event).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EventExists(Event.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
-        }
-
-        private bool EventExists(int id)
-        {
-            return _context.Events.Any(e => e.Id == id);
-        }
     }
+
+  
 }
