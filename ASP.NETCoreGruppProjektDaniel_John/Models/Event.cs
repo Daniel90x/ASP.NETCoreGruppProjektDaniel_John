@@ -17,7 +17,9 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Models
         public DateTime Date { get; set; }
 
         public int SpotsAvailable { get; set; }
-        
+
+        public List<MyUser> Attendees { get; set; }
+
 
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Data
 {
-    public class EventDbContext : IdentityDbContext<IdentityUser>
+    public class EventDbContext : IdentityDbContext<MyUser>
     {
         public EventDbContext(DbContextOptions<EventDbContext> options)
             : base(options)
@@ -21,14 +21,12 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
 
         public void seed()
         {
+            this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
-            if (this.Events.Any())
-            {
-                return;
-            }
+
             Events.AddRange(new List<Event>()
             {
-                new Event(){Title = "Hejsan", Adress = "Här"}
+                new Event(){Title = "Hejsan", Adress = "Här", Place = "Ny Place"}
             });
 
             this.SaveChanges();
@@ -36,7 +34,16 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
 
         public async Task SeedAsync(UserManager<MyUser> userManager)
         {
-            await Database.EnsureCreatedAsync();
+
+
+            await this.Database.EnsureDeletedAsync();
+            await this.Database.EnsureCreatedAsync();
+
+            Events.AddRange(new List<Event>()
+            {
+                new Event(){Title = "Hejsan", Adress = "Här", Place = "Ny Place"},
+                new Event(){Title = "Hejsan1", Adress = "Här2", Place = "Ny Place3"}
+            });
 
             MyUser user = new MyUser()
             {
