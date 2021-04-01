@@ -1,6 +1,17 @@
 ﻿@page
 @model ASP.NETCoreGruppProjektDaniel_John.Pages.User.RegisterModel
 @{
+    ViewData["Title"] = "Register";
 }
 
+<h1>Register</h1>
+<form method="post">
+    <input asp-for="NewUser.UserName" />
+    <input asp-for="NewUser.Password" />
+    <input type="submit" />
 
+</form>
+
+<div>
+    <a asp-page="/Index">Back to List</a>
+</div>
