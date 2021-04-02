@@ -6,16 +6,16 @@
 
 <h1>Register</h1>
 <form method="post">
-    <label for="UserName">User Name:</label><br />  
+    <label for="FirstName">First name:</label><br />
+    <input id="FirstName" asp-for="NewUser.FirstName" /><br />
+    <label for="LastName">Last name:</label><br />
+    <input id="LastName" asp-for="NewUser.LastName" /><br />
+    <label for="UserName">User name:</label><br />
     <input id="UserName" asp-for="NewUser.UserName" /><br />
     <label for="password">Password:</label><br />
     <input id="password" type="password" asp-for="NewUser.Password" /><br />
     <label for="confirm">Confirm password:</label><br />
     <input id="confirm" type="password" asp-for="NewUser.Password" /><br />
-    <label for="Email">Email</label><br />
-    <input id="Email" type="email" asp-for="NewUser.Email" /><br />
-    <label for="phoneNumber">Phone number:</label><br />
-    <input id="phoneNumber" asp-for="NewUser.PhoneNumber" /><br />
     <input type="submit" />
 
 </form>

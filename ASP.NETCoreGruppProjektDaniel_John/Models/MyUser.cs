@@ -8,6 +8,8 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Models
 {
     public class MyUser : IdentityUser
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public List<Event> MyEvents { get; set; }
     }
 }
