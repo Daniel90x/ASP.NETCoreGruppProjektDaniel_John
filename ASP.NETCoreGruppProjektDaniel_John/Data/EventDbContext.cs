@@ -42,7 +42,8 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
             Events.AddRange(new List<Event>()
             {
                 new Event(){Title = "Hejsan", Adress = "Här", Place = "Ny Place"},
-                new Event(){Title = "Hejsan1", Adress = "Här2", Place = "Ny Place3"}
+                new Event(){Title = "Hejsan1", Adress = "Här2", Place = "Ny Place3"},
+                new Event(){Title = "Henrys hörna", Adress = "Strandgatan 7", Place = "True Heaven"}
             });
 
             MyUser user = new MyUser()

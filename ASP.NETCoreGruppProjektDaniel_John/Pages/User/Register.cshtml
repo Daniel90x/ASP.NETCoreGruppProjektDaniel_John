@@ -14,8 +14,6 @@
     <input id="UserName" asp-for="NewUser.UserName" /><br />
     <label for="password">Password:</label><br />
     <input id="password" type="password" asp-for="NewUser.Password" /><br />
-    <label for="confirm">Confirm password:</label><br />
-    <input id="confirm" type="password" asp-for="NewUser.ConfirmPassword" /><br />
     <input type="submit" />
 
 </form>
@@ -23,9 +21,3 @@
 <div>
     <a asp-page="/Index">Back to List</a>
 </div>
-
-@if (Request.Method != "Post")
-{
-    <h3>TESTAR</h3>
-}
-hhhhhh

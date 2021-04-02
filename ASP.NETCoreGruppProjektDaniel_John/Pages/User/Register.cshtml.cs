@@ -11,6 +11,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
 {
     public class RegisterModel : PageModel
     {
+        bool test = true;
         private readonly UserManager<MyUser> _userManager;
 
         public RegisterModel(UserManager<MyUser> userManager)
@@ -25,26 +26,19 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
         {
             public string UserName { get; set; }
             public string Password { get; set; }
-            public string ConfirmPassword { get; set; }
             public string FirstName { get;  set; }
             public string LastName { get;  set; }
-            public string Email { get; set; }
-            public string PhoneNumber { get; set; }
         }
 
 
 
         public async Task<IActionResult> Onpost()
         {
-            if (NewUser.Password == NewUser.ConfirmPassword)
-            {
                 MyUser newUser = new MyUser()
                 {
                     UserName = NewUser.UserName,
                     FirstName = NewUser.FirstName,
-                    LastName = NewUser.LastName,
-                    Email = NewUser.Email,
-                    PhoneNumber = NewUser.PhoneNumber
+                    LastName = NewUser.LastName
                 };
 
                 var result = await _userManager.CreateAsync(newUser, NewUser.Password);
@@ -55,11 +49,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
                 }
 
                 return Page();
-            }
-            else
-            {
-                return NotFound();
-            }
         }
     }
 }
