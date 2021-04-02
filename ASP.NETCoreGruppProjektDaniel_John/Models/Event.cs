@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +19,10 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Models
 
         public int SpotsAvailable { get; set; }
 
+        
+        public MyUser Organizer { get; set; }
+
+        
         public List<MyUser> Attendees { get; set; }
 
 

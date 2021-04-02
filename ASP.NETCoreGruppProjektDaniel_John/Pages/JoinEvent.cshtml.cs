@@ -7,12 +7,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ASP.NETCoreGruppProjektDaniel_John.Data;
 using ASP.NETCoreGruppProjektDaniel_John.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
     public class JoinEventModel : PageModel
     {
-        private readonly ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext _context;
+        private readonly EventDbContext _context;
+        private readonly UserManager<MyUser> _userManager;
+        
+        
 
         public JoinEventModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
         {
@@ -36,5 +40,13 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
             }
             return Page();
         }
+
+        /*public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            Event = await _context.Events.FirstOrDefaultAsync(m => m.Id == id);
+            var testar = await _context.Events.Where(m => m.Adress == User.Identity.Name).FirstOrDefaultAsync();
+            string test = User.Identity.Name;
+            return Page();
+        }*/
     }
 }
