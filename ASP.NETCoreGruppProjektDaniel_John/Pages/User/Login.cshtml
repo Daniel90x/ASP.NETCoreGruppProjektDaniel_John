@@ -7,10 +7,12 @@
 
 <h1>Login</h1>
 <form method="post">
-    <input asp-for="LoginUser.UserName"/>
-    <input asp-for="LoginUser.Password"/>
+    <label for="User">User name:</label><br />
+    <input id="User" asp-for="LoginUser.UserName"/><br />
+    <label for="Pass">Password:</label><br />
+    <input id="Pass" type="Password" asp-for="LoginUser.Password"/><br />
     <input type="submit" />
-
+   
 </form>
 
 <div>

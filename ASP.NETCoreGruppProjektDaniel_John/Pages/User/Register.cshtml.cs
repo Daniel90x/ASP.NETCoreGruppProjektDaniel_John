@@ -25,6 +25,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
         {
             public string UserName { get; set; }
             public string Password { get; set; }
+            public string ConfirmPassword { get; set; }
             public string FirstName { get;  set; }
             public string LastName { get;  set; }
             public string Email { get; set; }
@@ -35,23 +36,30 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
 
         public async Task<IActionResult> Onpost()
         {
-            MyUser newUser = new MyUser()
+            if (NewUser.Password == NewUser.ConfirmPassword)
             {
-                UserName = NewUser.UserName,
-                FirstName = NewUser.FirstName,
-                LastName = NewUser.LastName,
-                Email = NewUser.Email,
-                PhoneNumber = NewUser.PhoneNumber
-            };
+                MyUser newUser = new MyUser()
+                {
+                    UserName = NewUser.UserName,
+                    FirstName = NewUser.FirstName,
+                    LastName = NewUser.LastName,
+                    Email = NewUser.Email,
+                    PhoneNumber = NewUser.PhoneNumber
+                };
 
-            var result = await _userManager.CreateAsync(newUser, NewUser.Password);
+                var result = await _userManager.CreateAsync(newUser, NewUser.Password);
 
-            if (result.Succeeded)
-            {
-                return RedirectToPage("/Index");
+                if (result.Succeeded)
+                {
+                    return RedirectToPage("/Index");
+                }
+
+                return Page();
             }
-
-            return Page();
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
