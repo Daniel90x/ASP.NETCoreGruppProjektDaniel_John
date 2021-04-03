@@ -41,12 +41,13 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
             return Page();
         }
 
-        /*public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            Event = await _context.Events.FirstOrDefaultAsync(m => m.Id == id);
+            /*Event = await _context.Events.FirstOrDefaultAsync(m => m.Id == id);
             var testar = await _context.Events.Where(m => m.Adress == User.Identity.Name).FirstOrDefaultAsync();
+            var testar = await _context.Users.Where(m => m.UserName == User.Identity.Name).FirstOrDefaultAsync();
             string test = User.Identity.Name;
-            return Page();
-        }*/
+            return Page();*/
+        }
     }
 }
