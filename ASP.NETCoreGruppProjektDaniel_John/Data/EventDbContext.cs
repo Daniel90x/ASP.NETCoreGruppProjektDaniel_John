@@ -41,17 +41,17 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
 
             Events.AddRange(new List<Event>()
             {
-                new Event(){Title = "Hejsan", Adress = "Här", Place = "Ny Place"},
-                new Event(){Title = "Hejsan1", Adress = "Här2", Place = "Ny Place3"},
-                new Event(){Title = "Henrys hörna", Adress = "Strandgatan 7", Place = "True Heaven"}
+                new Event(){Title = "Hejsan", Adress = "Här", Place = "Ny Place", SpotsAvailable = 66},
+                new Event(){Title = "Hejsan1", Adress = "Här2", Place = "Ny Place3", SpotsAvailable = 17},
+                new Event(){Title = "Henrys hörna", Adress = "Strandgatan 7", Place = "True Heaven", SpotsAvailable = 183}
             });
 
             MyUser user = new MyUser()
             {
-                UserName = "test_user",
-                Email = "test@hotmail.com",
+                UserName = "admin",
+                Email = "admin@hotmail.com",
             };
-            await userManager.CreateAsync(user, "Passw0rd!");
+            await userManager.CreateAsync(user, "Admin_1");
             await SaveChangesAsync();
         }
     }
