@@ -11,3 +11,15 @@
         <a type="button" class="btn-danger text-light" asp-route-resetDb="true">Reset Db</a>    
     </div>
 </div>
+
+@if (User.IsInRole("admin"))
+            {
+                <h1>hej admin</h1>
+            }
+
+
+<div>
+    <form method="post">
+        <input type="submit" name="test" value="Test" />
+    </form>
+</div>

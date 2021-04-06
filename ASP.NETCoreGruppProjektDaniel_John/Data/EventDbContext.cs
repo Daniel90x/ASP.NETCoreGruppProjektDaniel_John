@@ -8,17 +8,30 @@ using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
+
 namespace ASP.NETCoreGruppProjektDaniel_John.Data
 {
     public class EventDbContext : IdentityDbContext<MyUser>
     {
 
-        private readonly RoleManager<IdentityRole> roleManager;
+       /* private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly EventDbContext _context;
+
+        public EventDbContext(
+              EventDbContext context,
+              RoleManager<IdentityRole> roleManager
+              )
+          {
+              _context = context;
+              _roleManager = roleManager;
+          }
+       */
 
         public EventDbContext(DbContextOptions<EventDbContext> options)
             : base(options)
         {
         }
+
 
         public DbSet<Event> Events { get; set; }
 
@@ -38,9 +51,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
 
         public async Task SeedAsync(UserManager<MyUser> userManager)
         {
-            await roleManager.CreateAsync(new IdentityRole("admin"));
-            await roleManager.CreateAsync(new IdentityRole("organizer"));
-            await roleManager.CreateAsync(new IdentityRole("user"));
             await this.Database.EnsureDeletedAsync();
             await this.Database.EnsureCreatedAsync();
 
@@ -56,6 +66,14 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
                 UserName = "admin",
                 Email = "admin@hotmail.com",
             };
+
+
+           /* await _roleManager.CreateAsync(new IdentityRole("admin"));
+            await _roleManager.CreateAsync(new IdentityRole("organizer"));
+            await _roleManager.CreateAsync(new IdentityRole("user"));
+
+            await userManager.AddToRoleAsync(user, "admin");*/
+
             await userManager.CreateAsync(user, "Admin_1");
             await SaveChangesAsync();
         }

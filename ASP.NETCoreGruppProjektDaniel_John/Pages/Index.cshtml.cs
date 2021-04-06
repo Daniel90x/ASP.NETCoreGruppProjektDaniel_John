@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages // userManager fungerar ej som det ska...
 {
@@ -17,15 +18,19 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages // userManager fungerar ej so
         private readonly ILogger<IndexModel> _logger;
         private readonly EventDbContext _context;
         private readonly UserManager<MyUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public IndexModel(
             ILogger<IndexModel> logger,
             EventDbContext context,
-            UserManager<MyUser> userManager)
+            UserManager<MyUser> userManager,
+            RoleManager<IdentityRole> roleManager
+            )
         {
             _logger = logger;
             _context = context;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task OnGetAsync(bool? resetDb)
@@ -34,6 +39,17 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages // userManager fungerar ej so
             {
                 await _context.SeedAsync(_userManager);
             }
+        }
+
+
+        public async Task OnPostAsync()
+        {
+            var user = await _context.Users.Where(u => u.UserName == "admin").FirstOrDefaultAsync();
+            await _roleManager.CreateAsync(new IdentityRole("admin"));
+            await _roleManager.CreateAsync(new IdentityRole("organizer"));
+            await _roleManager.CreateAsync(new IdentityRole("user"));
+
+            await _userManager.AddToRoleAsync(user, "admin");
         }
     }
 }
