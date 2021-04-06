@@ -50,9 +50,13 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
         {
             Event = await _context.Events.FirstOrDefaultAsync(m => m.Id == id);
             var user = await _context.Users.Where(u => u.UserName == User.Identity.Name).Include(u => u.MyEvents).FirstOrDefaultAsync();
-
-            user.MyEvents.Add(Event);
-            await _context.SaveChangesAsync();
+            if (!user.MyEvents.Contains(Event))
+            {
+                Event.SpotsAvailable = Event.SpotsAvailable - 1;
+                user.MyEvents.Add(Event);
+                await _context.SaveChangesAsync();
+            }
+    
             return Page();
         }
     }

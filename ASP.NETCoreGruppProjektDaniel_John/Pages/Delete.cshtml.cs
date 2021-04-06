@@ -54,6 +54,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 
             if (Event != null)
             {
+                Event.SpotsAvailable = Event.SpotsAvailable + 1;
                 user.MyEvents.Remove(Event);
                 await _context.SaveChangesAsync();
             }

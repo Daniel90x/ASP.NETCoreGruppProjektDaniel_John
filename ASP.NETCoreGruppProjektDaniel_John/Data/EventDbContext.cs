@@ -12,12 +12,14 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
 {
     public class EventDbContext : IdentityDbContext<MyUser>
     {
+
         public EventDbContext(DbContextOptions<EventDbContext> options)
             : base(options)
         {
         }
 
         public DbSet<Event> Events { get; set; }
+
 
         public void seed()
         {
@@ -34,7 +36,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
 
         public async Task SeedAsync(UserManager<MyUser> userManager)
         {
-
 
             await this.Database.EnsureDeletedAsync();
             await this.Database.EnsureCreatedAsync();
