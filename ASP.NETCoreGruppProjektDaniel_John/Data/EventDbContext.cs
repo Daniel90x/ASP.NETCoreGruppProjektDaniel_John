@@ -67,14 +67,21 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
                 Email = "admin@hotmail.com",
             };
 
+            MyUser user1 = new MyUser()
+            {
+                UserName = "org",
+                Email = "organizer@hotmail.com",
+            };
 
-           /* await _roleManager.CreateAsync(new IdentityRole("admin"));
-            await _roleManager.CreateAsync(new IdentityRole("organizer"));
-            await _roleManager.CreateAsync(new IdentityRole("user"));
 
-            await userManager.AddToRoleAsync(user, "admin");*/
+            /* await _roleManager.CreateAsync(new IdentityRole("admin"));
+             await _roleManager.CreateAsync(new IdentityRole("organizer"));
+             await _roleManager.CreateAsync(new IdentityRole("user"));
+
+             await userManager.AddToRoleAsync(user, "admin");*/
 
             await userManager.CreateAsync(user, "Admin_1");
+            await userManager.CreateAsync(user1, "Organ_1");
             await SaveChangesAsync();
         }
     }

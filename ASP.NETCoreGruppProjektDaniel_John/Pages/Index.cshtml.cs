@@ -45,11 +45,13 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages // userManager fungerar ej so
         public async Task OnPostAsync()
         {
             var user = await _context.Users.Where(u => u.UserName == "admin").FirstOrDefaultAsync();
+            var user1 = await _context.Users.Where(u => u.UserName == "org").FirstOrDefaultAsync();
             await _roleManager.CreateAsync(new IdentityRole("admin"));
             await _roleManager.CreateAsync(new IdentityRole("organizer"));
             await _roleManager.CreateAsync(new IdentityRole("user"));
 
             await _userManager.AddToRoleAsync(user, "admin");
+            await _userManager.AddToRoleAsync(user1, "organizer");
         }
     }
 }
