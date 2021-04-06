@@ -18,9 +18,14 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
         
         
 
-        public JoinEventModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
+        public JoinEventModel(
+            EventDbContext context,
+            UserManager<MyUser> userManager
+            )
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         public Event Event { get; set; }
@@ -43,11 +48,29 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            /*Event = await _context.Events.FirstOrDefaultAsync(m => m.Id == id);
-            var testar = await _context.Events.Where(m => m.Adress == User.Identity.Name).FirstOrDefaultAsync();
-            var testar = await _context.Users.Where(m => m.UserName == User.Identity.Name).FirstOrDefaultAsync();
-            string test = User.Identity.Name;
-            return Page();*/
+            Event = await _context.Events.FirstOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.Where(u => u.UserName == User.Identity.Name).Include(u => u.MyEvents).FirstOrDefaultAsync();
+
+            user.MyEvents.Add(Event);
+            await _context.SaveChangesAsync();
+            return Page();
         }
     }
 }
+
+
+// var attendee = await _context.Users.Where(m => m.UserName == User.Identity.Name).FirstOrDefaultAsync();
+
+
+/*var Event = await _context.Events.FirstOrDefaultAsync(m => m.Id == id);
+            var attendee = await _context.Users.Where(m => m.UserName == User.Identity.Name).FirstOrDefaultAsync();
+
+            if(!attendee.MyEvents.Contains(Event))
+            {
+                attendee.MyEvents.Add(Event);
+                await _context.SaveChangesAsync();
+
+
+
+
+            }*/

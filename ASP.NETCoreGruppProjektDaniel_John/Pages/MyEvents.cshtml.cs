@@ -7,23 +7,36 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ASP.NETCoreGruppProjektDaniel_John.Data;
 using ASP.NETCoreGruppProjektDaniel_John.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
     public class MyEventsModel : PageModel
     {
-        private readonly ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext _context;
+        private readonly EventDbContext _context;
+        private readonly UserManager<MyUser> _userManager;
 
-        public MyEventsModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
+        public MyEventsModel(
+            EventDbContext context,
+            UserManager<MyUser> userManager
+            )
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IList<Event> Event { get;set; }
 
         public async Task OnGetAsync()
         {
-            Event = await _context.Events.ToListAsync();
+            var user = await _context.Users
+                .Where(u => u.UserName == User.Identity.Name)
+                .Include(u => u.MyEvents)
+                .FirstOrDefaultAsync();
+
+            Event = user.MyEvents;
+
+            
         }
     }
 }
