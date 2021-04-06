@@ -42,10 +42,36 @@ namespace ASP.NETCoreGruppProjektDaniel_John
 
         }
 
+         /*public void Configure(IAppBuilder app)
+        {
+            ConfigureAuth(app);
+            createRolesandUsers();
+
+        } */
+
+        /* private void createRolesandUsers()
+        {
+            EventDbContext context = new EventDbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context());
+            var Usermanager = new UserManager<Application>(new.UserStore<ApplicationUser>(context));
+
+
+        } */
+
+
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+           /* {
+                ConfigrueAuth(app);
+                createRolesandUsers();
+            }*/
+
+
+
+        if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
@@ -56,6 +82,9 @@ namespace ASP.NETCoreGruppProjektDaniel_John
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

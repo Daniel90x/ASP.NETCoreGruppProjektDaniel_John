@@ -13,6 +13,8 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
     public class EventDbContext : IdentityDbContext<MyUser>
     {
 
+        private readonly RoleManager<IdentityRole> roleManager;
+
         public EventDbContext(DbContextOptions<EventDbContext> options)
             : base(options)
         {
@@ -36,7 +38,9 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
 
         public async Task SeedAsync(UserManager<MyUser> userManager)
         {
-
+            await roleManager.CreateAsync(new IdentityRole("admin"));
+            await roleManager.CreateAsync(new IdentityRole("organizer"));
+            await roleManager.CreateAsync(new IdentityRole("user"));
             await this.Database.EnsureDeletedAsync();
             await this.Database.EnsureCreatedAsync();
 
