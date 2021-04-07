@@ -60,9 +60,17 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
                 RoleIsOrganizer = true
             };
 
+            MyUser user2 = new MyUser()
+            {
+                UserName = "Dude",
+                Email = "dude@hotmail.com",
+                
+            };
+
 
             await userManager.CreateAsync(user, "Admin_1");
             await userManager.CreateAsync(user1, "Organ_1");
+            await userManager.CreateAsync(user2, "Dudeman_1");
             await SaveChangesAsync();
         }
     }

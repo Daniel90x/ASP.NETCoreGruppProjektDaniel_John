@@ -42,13 +42,13 @@
 
                 @if (item.RoleIsOrganizer)
                 {
-                    <form method="post" asp-route-id="@item.UserName" asp-page-handler="Add">
-                        <input type="button" name="@item.UserName" value="Remove organizer" />
+                    <form method="post" asp-route-UserName="@item.UserName" asp-page-handler="Remove">
+                        <button type="submit">Remove organizer</button>
                     </form>
                 }
                 else
                 {
-                    <form method="post" asp-route-id="@item.UserName" asp-page-handler="Add">
+                    <form method="post" asp-route-UserName="@item.UserName" asp-page-handler="Add">
                         <button type="submit">Make organizer</button>
                     </form>
                 }
