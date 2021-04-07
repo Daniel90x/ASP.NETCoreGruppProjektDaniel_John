@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ASP.NETCoreGruppProjektDaniel_John.Data;
 using ASP.NETCoreGruppProjektDaniel_John.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
@@ -34,6 +36,8 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
             {
                 return Page();
             }
+            var test = _context.Users.Where(u => u.UserName == User.Identity.Name).Include(u => u.HostedEvents).FirstOrDefaultAsync();
+            Event.Organizer = test.Result;
             _context.Events.Add(Event);
             await _context.SaveChangesAsync();
 
