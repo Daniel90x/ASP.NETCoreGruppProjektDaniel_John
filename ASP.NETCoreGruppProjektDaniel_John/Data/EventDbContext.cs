@@ -25,7 +25,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
 
         public void seed()
         {
-            this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
 
             Events.AddRange(new List<Event>()
@@ -58,6 +57,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
             {
                 UserName = "org",
                 Email = "organizer@hotmail.com",
+                RoleIsOrganizer = true
             };
 
 

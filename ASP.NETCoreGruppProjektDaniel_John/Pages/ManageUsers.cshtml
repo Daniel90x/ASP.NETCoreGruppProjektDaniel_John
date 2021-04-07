@@ -26,7 +26,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MyUser) {
+        @foreach (var item in Model.MyUser)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
@@ -35,13 +36,28 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                @Html.DisplayFor(modelItem => item.RoleIsOrganizer)
             <td>
+            <td>
+
+                @if (item.RoleIsOrganizer)
+                {
+                    <form method="post" asp-route-id="@item.UserName" asp-page-handler="Add">
+                        <input type="button" name="@item.UserName" value="Remove organizer" />
+                    </form>
+                }
+                else
+                {
+                    <form method="post" asp-route-id="@item.UserName" asp-page-handler="Add">
+                        <button type="submit">Make organizer</button>
+                    </form>
+                }
+<td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
