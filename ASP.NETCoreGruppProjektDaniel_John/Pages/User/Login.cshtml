@@ -8,13 +8,21 @@
 <h1>Login</h1>
 <form method="post">
     <label for="User">User name:</label><br />
-    <input id="User" asp-for="LoginUser.UserName"/><br />
+    <input id="User" asp-for="LoginUser.UserName" /><br />
     <label for="Pass">Password:</label><br />
-    <input id="Pass" type="Password" asp-for="LoginUser.Password"/><br />
+    <input id="Pass" type="Password" asp-for="LoginUser.Password" /><br />
     <input type="submit" />
-   
+
 </form>
 
 <div>
     <a asp-page="/Index">Back to List</a>
 </div>
+
+
+@if (Request.Method == "POST")
+{
+    <div>
+        <h3 style="color:red">Invalid user name or password</h3>
+    </div>
+}

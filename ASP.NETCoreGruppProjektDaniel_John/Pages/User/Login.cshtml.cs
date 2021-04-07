@@ -33,15 +33,30 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
         }
         public async Task<IActionResult> OnPost()
         {
-            var result = await _signInManager.PasswordSignInAsync(LoginUser.UserName, LoginUser.Password, false, false);
-
-            if (result.Succeeded)
+            try // Använder try/catch för att stoppa progarmmet från att krasha om ingen skrivit in något i loginen och skickat iväg det.
             {
+                var result = await _signInManager.PasswordSignInAsync(LoginUser.UserName, LoginUser.Password, false, false);
 
-                return RedirectToPage("/index");
+                if (result.Succeeded)
+                {
+
+                    return RedirectToPage("/index");
+                }
+                else
+                {
+                    return Page();
+                }
+
+
+            }
+            catch
+            {
+                return Page();
+
             }
 
-            return Page();
+
+
         }
 
 
