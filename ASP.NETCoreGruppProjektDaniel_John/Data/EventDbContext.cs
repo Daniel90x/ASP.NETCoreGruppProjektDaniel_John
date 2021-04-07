@@ -14,19 +14,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
     public class EventDbContext : IdentityDbContext<MyUser>
     {
 
-       /* private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly EventDbContext _context;
-
-        public EventDbContext(
-              EventDbContext context,
-              RoleManager<IdentityRole> roleManager
-              )
-          {
-              _context = context;
-              _roleManager = roleManager;
-          }
-       */
-
         public EventDbContext(DbContextOptions<EventDbContext> options)
             : base(options)
         {
@@ -73,12 +60,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
                 Email = "organizer@hotmail.com",
             };
 
-
-            /* await _roleManager.CreateAsync(new IdentityRole("admin"));
-             await _roleManager.CreateAsync(new IdentityRole("organizer"));
-             await _roleManager.CreateAsync(new IdentityRole("user"));
-
-             await userManager.AddToRoleAsync(user, "admin");*/
 
             await userManager.CreateAsync(user, "Admin_1");
             await userManager.CreateAsync(user1, "Organ_1");
