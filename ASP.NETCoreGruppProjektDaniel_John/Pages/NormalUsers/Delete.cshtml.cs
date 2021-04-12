@@ -10,11 +10,11 @@ using ASP.NETCoreGruppProjektDaniel_John.Models;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
-    public class OrganizeDeleteModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext _context;
 
-        public OrganizeDeleteModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
+        public DeleteModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
         {
             _context = context;
         }
@@ -47,13 +47,19 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 
             Event = await _context.Events.FindAsync(id);
 
+            var user = await _context.Users
+                .Where(u => u.UserName == User.Identity.Name)
+                .Include(u => u.MyEvents)
+                .FirstOrDefaultAsync();
+
             if (Event != null)
             {
-                _context.Events.Remove(Event);
+                Event.SpotsAvailable = Event.SpotsAvailable + 1;
+                user.MyEvents.Remove(Event);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/NormalUsers/MyEvents");
         }
     }
 }

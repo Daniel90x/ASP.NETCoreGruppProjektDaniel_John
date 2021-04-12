@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
-    [Authorize(Roles = "organizer")]
+    [Authorize(Roles = "organizer, admin")]
     public class OrganizeEventsModel : PageModel
     {
         private readonly ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext _context;

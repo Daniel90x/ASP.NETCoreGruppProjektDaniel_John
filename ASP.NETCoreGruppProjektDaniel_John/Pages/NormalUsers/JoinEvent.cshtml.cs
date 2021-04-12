@@ -53,7 +53,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
             
                 if (user == null)
                 {
-                    return RedirectToPage("./User/Login");
+                    return RedirectToPage("/User/Login");
                 }
 
                 if (!user.MyEvents.Contains(Event))

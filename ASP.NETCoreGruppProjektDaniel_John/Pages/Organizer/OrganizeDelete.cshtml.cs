@@ -7,14 +7,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ASP.NETCoreGruppProjektDaniel_John.Data;
 using ASP.NETCoreGruppProjektDaniel_John.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
-    public class DeleteModel : PageModel
+    [Authorize(Roles = "organizer, admin")]
+    public class OrganizeDeleteModel : PageModel
     {
         private readonly ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext _context;
 
-        public DeleteModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
+        public OrganizeDeleteModel(ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext context)
         {
             _context = context;
         }
@@ -47,19 +49,13 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 
             Event = await _context.Events.FindAsync(id);
 
-            var user = await _context.Users
-                .Where(u => u.UserName == User.Identity.Name)
-                .Include(u => u.MyEvents)
-                .FirstOrDefaultAsync();
-
             if (Event != null)
             {
-                Event.SpotsAvailable = Event.SpotsAvailable + 1;
-                user.MyEvents.Remove(Event);
+                _context.Events.Remove(Event);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Index");
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿@page
-@model ASP.NETCoreGruppProjektDaniel_John.Pages.MyEventsModel
+@model ASP.NETCoreGruppProjektDaniel_John.Pages.EventModel
 
 @{
-    ViewData["Title"] = "MyEvents";
+    ViewData["Title"] = "Event";
 }
 
-<h1>My Events</h1>
+<h1>Event</h1>
 
 <table class="table">
     <thead>
@@ -15,9 +15,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Event[0].Adress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Event[0].Description)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Event[0].Place)
@@ -41,9 +38,6 @@
                 @Html.DisplayFor(modelItem => item.Adress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Place)
             </td>
             <td>
@@ -53,8 +47,7 @@
                 @Html.DisplayFor(modelItem => item.SpotsAvailable)
             </td>
             <td>
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="/NormalUsers/JoinEvent" asp-route-id="@item.Id">Join Event</a> |
             </td>
         </tr>
 }

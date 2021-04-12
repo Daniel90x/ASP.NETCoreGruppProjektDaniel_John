@@ -9,9 +9,11 @@ using ASP.NETCoreGruppProjektDaniel_John.Data;
 using ASP.NETCoreGruppProjektDaniel_John.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
+    [Authorize(Roles = "organizer, admin")]
     public class AddEventModel : PageModel
     {
         private readonly ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext _context;
@@ -41,7 +43,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
             _context.Events.Add(Event);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Organizer/OrganizeEvents");
         }
     }
 }

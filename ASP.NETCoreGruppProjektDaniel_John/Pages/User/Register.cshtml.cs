@@ -11,7 +11,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
 {
     public class RegisterModel : PageModel
     {
-        bool test = true;
         private readonly UserManager<MyUser> _userManager;
 
         public RegisterModel(UserManager<MyUser> userManager)
