@@ -10,6 +10,8 @@ using ASP.NETCoreGruppProjektDaniel_John.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
+
+
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
     [Authorize(Roles="admin")]

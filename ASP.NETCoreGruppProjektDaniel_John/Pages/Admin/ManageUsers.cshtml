@@ -1,6 +1,7 @@
 ﻿@page
 @model ASP.NETCoreGruppProjektDaniel_John.Pages.ManageUsersModel
-
+@using ASP.NETCoreGruppProjektDaniel_John.Models
+@inject UserManager<MyUser> userManager
 @{
     ViewData["Title"] = "ManageUsers";
 }
@@ -28,36 +29,51 @@
     <tbody>
         @foreach (var item in Model.MyUser)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoleIsOrganizer)
-            <td>
-            <td>
-
-                @if (item.RoleIsOrganizer)
-                {
-                    <form method="post" asp-route-UserName="@item.UserName" asp-page-handler="Remove">
-                        <button type="submit">Remove organizer</button>
-                    </form>
-                }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @if (await userManager.IsInRoleAsync(item, "organizer"))
+                    {
+                        <form method="post" >
+                            <input type="checkbox" checked disabled/>
+                        </form>
+                    }
                 else
-                {
-                    <form method="post" asp-route-UserName="@item.UserName" asp-page-handler="Add">
-                        <button type="submit">Make organizer</button>
-                    </form>
-                }
+                    {
+                <form method="post">
+                    <input type="checkbox" disabled/>
+                </form>  
+
+
+                    }
+
+                    <!--Html.DisplayFor(modelItem => userManager.IsInRoleAsync(item, "organizer"))  -->         <!--item.RoleIsOrganizer-->     <!-- await userManager.IsInRoleAsync(user, "admin");  -->
 <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./NormalUsers/Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+                <td>
+
+                    @if (await userManager.IsInRoleAsync(item, "organizer"))
+                    {
+                        <form method="post" asp-route-UserName="@item.UserName" asp-page-handler="Remove">
+                            <button type="submit">Remove organizer</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form method="post" asp-route-UserName="@item.UserName" asp-page-handler="Add">
+                            <button type="submit">Make organizer</button>
+                        </form>
+                    }
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./NormalUsers/Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
