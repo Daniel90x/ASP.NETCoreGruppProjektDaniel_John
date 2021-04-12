@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ASP.NETCoreGruppProjektDaniel_John.Data;
 using ASP.NETCoreGruppProjektDaniel_John.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
+    [Authorize]
     public class JoinEventModel : PageModel
     {
         private readonly EventDbContext _context;

@@ -37,11 +37,15 @@ namespace ASP.NETCoreGruppProjektDaniel_John
                 .AddEntityFrameworkStores<EventDbContext>();
             services.AddRazorPages();
 
-
+            services.ConfigureApplicationCookie(options => {
+                options.AccessDeniedPath = "/User/Login";
+                options.LoginPath = "/User/Login";
+            });
 
 
         }
 
+        
          /*public void Configure(IAppBuilder app)
         {
             ConfigureAuth(app);

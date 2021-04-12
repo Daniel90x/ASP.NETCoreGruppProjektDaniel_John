@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using ASP.NETCoreGruppProjektDaniel_John.Data;
 using ASP.NETCoreGruppProjektDaniel_John.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Pages
 {
+    [Authorize]
     public class DeleteModel : PageModel
     {
         private readonly ASP.NETCoreGruppProjektDaniel_John.Data.EventDbContext _context;
