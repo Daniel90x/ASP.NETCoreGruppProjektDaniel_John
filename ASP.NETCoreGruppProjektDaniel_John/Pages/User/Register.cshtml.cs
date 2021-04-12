@@ -40,14 +40,34 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
                     LastName = NewUser.LastName
                 };
 
+                // var result = await _userManager.CreateAsync(newUser, NewUser.Password);
+                // await _userManager.AddToRoleAsync(newUser, "user");
+
+                try 
+                {
                 var result = await _userManager.CreateAsync(newUser, NewUser.Password);
                 await _userManager.AddToRoleAsync(newUser, "user");
+
                 if (result.Succeeded)
                 {
                     return RedirectToPage("/Index");
                 }
+                else 
+                    {
 
-                return Page();
+                        return Page();
+                    }
+
+                }
+                catch
+                {
+
+                    return Page();
+
+
+                }
+
+                
         }
     }
 }

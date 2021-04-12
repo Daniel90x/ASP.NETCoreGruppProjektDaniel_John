@@ -21,3 +21,10 @@
 <div>
     <a asp-page="/Index">Back to List</a>
 </div>
+
+@if (Request.Method == "POST")
+{
+    <div>
+        <h3 style="color:red">Invalid user name or password</h3>
+    </div>
+}
