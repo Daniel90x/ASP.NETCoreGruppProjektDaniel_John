@@ -7,7 +7,8 @@ using ASP.NETCoreGruppProjektDaniel_John.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
-
+using ASP.NETCoreGruppProjektDaniel_John.Pages;
+using Microsoft.Extensions.Logging;
 
 namespace ASP.NETCoreGruppProjektDaniel_John.Data
 {
@@ -18,6 +19,23 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
             : base(options)
         {
         }
+
+
+        /*private readonly ILogger<EventDbContext> _logger;
+        private readonly UserManager<MyUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+
+        public EventDbContext(
+            ILogger<EventDbContext> logger,
+            UserManager<MyUser> userManager,
+            RoleManager<IdentityRole> roleManager
+            )
+        {
+            _logger = logger;
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }*/
 
 
         public DbSet<Event> Events { get; set; }
@@ -35,7 +53,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
             this.SaveChanges();
         }
 
-        public async Task SeedAsync(UserManager<MyUser> userManager)
+        public async Task SeedAsync(UserManager<MyUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             await this.Database.EnsureDeletedAsync();
             await this.Database.EnsureCreatedAsync();
@@ -68,9 +86,24 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
             };
 
 
+
+            
+            await roleManager.CreateAsync(new IdentityRole("admin"));
+            await roleManager.CreateAsync(new IdentityRole("organizer"));
+            await roleManager.CreateAsync(new IdentityRole("user"));
+
+
             await userManager.CreateAsync(user, "Admin_1");
             await userManager.CreateAsync(user1, "Organ_1");
             await userManager.CreateAsync(user2, "Dudeman_1");
+
+            var userRole = await Users.Where(u => u.UserName == "admin").FirstOrDefaultAsync();
+            var userRole1 = await Users.Where(u => u.UserName == "org").FirstOrDefaultAsync();
+
+            await userManager.AddToRoleAsync(userRole, "admin");
+            await userManager.AddToRoleAsync(userRole1, "organizer");
+
+
             await SaveChangesAsync();
         }
     }
