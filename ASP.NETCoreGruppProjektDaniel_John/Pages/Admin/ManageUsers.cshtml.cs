@@ -42,7 +42,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
         {
             var User = await _context.Users.Where(u => u.UserName == UserName).FirstOrDefaultAsync();
             await _userManager.AddToRoleAsync(User, "organizer");  // UserName är null...
-            User.RoleIsOrganizer = true;
+            // User.RoleIsOrganizer = true;
             await _context.SaveChangesAsync();
 
             Event = await _context.Events.ToListAsync();
@@ -54,7 +54,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
         {
             var User = await _context.Users.Where(u => u.UserName == UserName).FirstOrDefaultAsync();
             await _userManager.RemoveFromRoleAsync(User, "organizer");  // UserName är null...
-            User.RoleIsOrganizer = false;
+            // User.RoleIsOrganizer = false;
             await _context.SaveChangesAsync();
 
             Event = await _context.Events.ToListAsync();

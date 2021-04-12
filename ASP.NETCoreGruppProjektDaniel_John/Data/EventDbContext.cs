@@ -75,7 +75,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
             {
                 UserName = "org",
                 Email = "organizer@hotmail.com",
-                RoleIsOrganizer = true
+                
             };
 
             MyUser user2 = new MyUser()
