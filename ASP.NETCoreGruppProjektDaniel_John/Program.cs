@@ -25,7 +25,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John
                 var context = services.GetRequiredService<EventDbContext>();
                 var userManager = services.GetRequiredService<UserManager<MyUser>>();
                 var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                await context.SeedAsync(userManager, roleManager, false); // kanske
+                await context.SeedAsync(userManager, roleManager, false); 
             }
             host.Run();
         }
