@@ -12,7 +12,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        // public bool RoleIsOrganizer { get; set;  } // WiP 
 
         [InverseProperty("Organizer")]
         public List<Event> HostedEvents { get; set; }
