@@ -17,7 +17,27 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages // userManager fungerar ej so
         public Event Event { get; set; }
         public MyUser MyUser { get;  set; }
 
+        private readonly UserManager<MyUser> _userManager;
+        private readonly EventDbContext _context;
+        public IndexModel(
+            EventDbContext context,
+            UserManager<MyUser> userManager
+            )
+        {
+            _context = context;
+            _userManager = userManager;
 
+        }
+
+
+
+        public async Task OnGetAsync()
+        {
+            var user = await _context.Users.
+                Where(u => u.UserName == User.Identity.Name)
+                .FirstOrDefaultAsync();
+            MyUser = user;
+        }
 
         /*  private readonly ILogger<IndexModel> _logger;
           private readonly EventDbContext _context;
