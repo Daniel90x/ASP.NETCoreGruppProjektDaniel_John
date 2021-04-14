@@ -41,7 +41,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
         public DbSet<Event> Events { get; set; }
 
 
-        public void seed()
+        /*public void seed()
         {
             this.Database.EnsureCreated();
 
@@ -51,13 +51,21 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
             });
 
             this.SaveChanges();
-        }
+        } */
 
-        public async Task SeedAsync(UserManager<MyUser> userManager, RoleManager<IdentityRole> roleManager)
+        public async Task SeedAsync(UserManager<MyUser> userManager, RoleManager<IdentityRole> roleManager, bool reset)
         {
-            await this.Database.EnsureDeletedAsync();
-            await this.Database.EnsureCreatedAsync();
-
+            //await this.Database.EnsureDeletedAsync();
+            //await this.Database.EnsureCreatedAsync();
+            if (reset)
+            {
+                await this.Database.EnsureDeletedAsync();
+            }
+            bool isCreated = await this.Database.EnsureCreatedAsync();
+            if (!isCreated)
+            {
+                return;
+            }
             Events.AddRange(new List<Event>()
             {
                 new Event(){Title = "Hejsan", Adress = "Här", Place = "Ny Place", SpotsAvailable = 66},
@@ -84,7 +92,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Data
                 Email = "dude@hotmail.com",
                 
             };
-
 
 
             

@@ -7,19 +7,5 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <div class="btn-group">
-        <a type="button" class="btn-danger text-light" asp-route-resetDb="true">Reset Db</a>    
-    </div>
 </div>
 
-@if (User.IsInRole("admin"))
-            {
-                <h1>hej admin</h1>
-            }
-
-
-<div>
-    <form method="post">
-        <input type="submit" name="test" value="Test" />
-    </form>
-</div>

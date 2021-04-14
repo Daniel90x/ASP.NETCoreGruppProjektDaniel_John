@@ -15,7 +15,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages // userManager fungerar ej so
     public class IndexModel : PageModel
     {
        
-        private readonly ILogger<IndexModel> _logger;
+      /*  private readonly ILogger<IndexModel> _logger;
         private readonly EventDbContext _context;
         private readonly UserManager<MyUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -37,9 +37,9 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages // userManager fungerar ej so
         {
             if (resetDb ?? false)
             {
-                await _context.SeedAsync(_userManager, _roleManager);
+                await _context.SeedAsync(_userManager, _roleManager, false);
             }
-        }
+        }*/
 
 
       /*  public async Task OnPostAsync()
