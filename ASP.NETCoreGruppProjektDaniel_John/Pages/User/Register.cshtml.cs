@@ -40,8 +40,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages.User
                     LastName = NewUser.LastName
                 };
 
-                // var result = await _userManager.CreateAsync(newUser, NewUser.Password);
-                // await _userManager.AddToRoleAsync(newUser, "user");
+                
 
                 try 
                 {

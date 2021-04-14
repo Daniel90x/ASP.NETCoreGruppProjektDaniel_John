@@ -41,7 +41,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John.Pages
         public async Task<IActionResult>OnPostAddAsync(string UserName)
         {
             var User = await _context.Users.Where(u => u.UserName == UserName).FirstOrDefaultAsync();
-            await _userManager.AddToRoleAsync(User, "organizer");  // UserName är null...
+            await _userManager.AddToRoleAsync(User, "organizer");  // UserName är null
             // User.RoleIsOrganizer = true;
             await _context.SaveChangesAsync();
 
