@@ -16,7 +16,7 @@ using ASP.NETCoreGruppProjektDaniel_John.Models;
 
 namespace ASP.NETCoreGruppProjektDaniel_John
 {
-    public class Startup // Här i startup så bestämmer vi hur vår app ska se ut och att den börjar byggas.
+    public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -32,7 +32,7 @@ namespace ASP.NETCoreGruppProjektDaniel_John
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<MyUser>() // Bytat till MyUser, gamla var IdentityUser
+            services.AddDefaultIdentity<MyUser>() 
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<EventDbContext>();
             services.AddRazorPages();
