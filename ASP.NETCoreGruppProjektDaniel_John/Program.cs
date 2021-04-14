@@ -15,23 +15,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John
 {
     public class Program
     {
-
-       /* private readonly UserManager<MyUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly EventDbContext _context;
-
-
-        public Program(
-            EventDbContext context,
-            UserManager<MyUser> userManager,
-            RoleManager<IdentityRole> roleManager
-            )
-        {
-            _context = context;
-            _userManager = userManager;
-            _roleManager = roleManager;
-        }*/
-
         public static async Task Main(string[] args)
         {
 

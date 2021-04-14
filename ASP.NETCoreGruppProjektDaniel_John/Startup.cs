@@ -16,7 +16,7 @@ using ASP.NETCoreGruppProjektDaniel_John.Models;
 
 namespace ASP.NETCoreGruppProjektDaniel_John
 {
-    public class Startup // Hejsvejs test för dependaencys
+    public class Startup // Här i startup så bestämmer vi hur vår app ska se ut och att den börjar byggas.
     {
         public Startup(IConfiguration configuration)
         {
@@ -44,22 +44,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John
 
         }
 
-        
-         /*public void Configure(IAppBuilder app)
-        {
-            ConfigureAuth(app);
-            createRolesandUsers();
-
-        } */
-
-        /* private void createRolesandUsers()
-        {
-            EventDbContext context = new EventDbContext();
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context());
-            var Usermanager = new UserManager<Application>(new.UserStore<ApplicationUser>(context));
-
-
-        } */
 
 
 
@@ -67,12 +51,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           /* {
-                ConfigrueAuth(app);
-                createRolesandUsers();
-            }*/
-
-
 
         if (env.IsDevelopment())
             {
