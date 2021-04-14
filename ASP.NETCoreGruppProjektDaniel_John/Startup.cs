@@ -38,7 +38,6 @@ namespace ASP.NETCoreGruppProjektDaniel_John
             services.AddRazorPages();
 
             services.ConfigureApplicationCookie(options => {
-                options.AccessDeniedPath = "/User/Login";
                 options.LoginPath = "/User/Login";
             });
 
